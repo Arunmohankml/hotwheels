@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Wheels | Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      .checkout-container {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+      .checkout-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .checkout-section h2 {
+        font-family: var(--font-display);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 1rem;
+      }
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+      .form-group input, .form-group select {
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        border: 1px solid var(--border-light);
+        color: white;
+        padding: 0.8rem;
+        border-radius: 4px;
+        font-family: var(--font-sans);
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--accent-red);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      
+      /* Payment Methods */
+      .payment-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .payment-option {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem;
+        border: 1px solid var(--border-light);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .payment-option:hover, .payment-option.active {
+        border-color: var(--accent-red);
+        background: rgba(255,42,42,0.05);
+      }
+      .payment-option input[type="radio"] {
+        accent-color: var(--accent-red);
+        width: 18px;
+        height: 18px;
+      }
+      .payment-option label {
+        flex: 1;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0;
+      }
+      .upi-options {
+        display: none;
+        padding: 1rem;
+        background: rgba(0,0,0,0.3);
+        border-radius: 6px;
+        margin-top: 0.5rem;
+      }
+      .payment-option.active + .upi-options {
+        display: block;
+      }
+      .upi-apps {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .upi-app {
+        flex: 1;
+        text-align: center;
+        padding: 0.8rem;
+        border: 1px solid var(--border-light);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .upi-app:hover { background: rgba(255,255,255,0.1); }
+      
+      /* Order Summary */
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+      .summary-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: var(--font-display);
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-light);
+      }
+      .co-items-list {
+        margin-bottom: 2rem;
+      }
+      .co-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .co-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        background: rgba(255,255,255,0.05);
+        border-radius: 4px;
+      }
+      
+      @media (max-width: 768px) {
+        .checkout-container {
+          grid-template-columns: 1fr;
+        }
+        .form-row { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body class="shop-page">
+    
+    <nav id="navbar" class="scrolled">
+      <div class="nav-container">
+        <div class="logo">
+          <a href="/index.html" style="text-decoration:none; color:inherit;">
+            <span class="logo-text">HOT <span class="accent-red">WHEELS</span></span>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="/index.html">Intro</a>
+          <a href="/shop.html">Shop</a>
+          <a href="/drop.html">Drops</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn cart-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div style="height: 80px;"></div>
+
+    <section class="section" style="padding-top: 2rem;">
+      <div class="container">
+        
+        <div class="checkout-container">
+          
+          <!-- Left Column: Forms -->
+          <div class="checkout-left">
+            <div class="checkout-section">
+              <h2>Shipping Address</h2>
+              <form id="address-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="John" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Doe" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label>Street Address</label>
+                  <input type="text" placeholder="123 Collector Ave" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" placeholder="Los Angeles" required>
+                  </div>
+                  <div class="form-group">
+                    <label>ZIP / Postal Code</label>
+                    <input type="text" placeholder="90001" required>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="checkout-section">
+              <h2>Payment Method</h2>
+              <div class="payment-methods">
+                
+                <!-- Razorpay Single Option -->
+                <div>
+                  <label class="payment-option active" style="border-color: #2b80ff; background: rgba(43, 128, 255, 0.05); cursor: default;">
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: #2b80ff;">Razorpay Secure Checkout</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                      </div>
+                      <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                        Pay securely using your preferred method: 
+                        <br><strong style="color:white;">UPI</strong> (Google Pay, PhonePe, Paytm, BHIM)
+                        <br><strong style="color:white;">Credit / Debit Cards</strong>
+                        <br><strong style="color:white;">Netbanking & Wallets</strong>
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Summary -->
+          <div class="checkout-right">
+            <div class="checkout-section" style="position: sticky; top: 100px;">
+              <h2>Order Summary</h2>
+              <div class="co-items-list" id="co-items-list">
+                <!-- Items loaded from JS -->
+              </div>
+              <div class="summary-item">
+                <span>Subtotal</span>
+                <span id="co-subtotal">₹0</span>
+              </div>
+              <div class="summary-item">
+                <span>Shipping</span>
+                <span style="color:var(--accent-red)">FREE</span>
+              </div>
+              <div class="summary-total">
+                <span>Total</span>
+                <span id="co-total" class="accent-red">₹0</span>
+              </div>
+              
+              <button class="btn btn-primary" id="btn-pay-now" style="width:100%; margin-top:2rem; font-size:1.1rem; padding:1rem;">Complete Payment</button>
+              
+              <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                Secure 256-bit encrypted checkout.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Hot Wheels Concept. For demo purposes only. No real transactions.</p>
+      </div>
+    </footer>
+
+    <!-- Fake Razorpay Modal UI -->
+    <div class="rzp-overlay" id="rzp-overlay">
+      <div class="rzp-modal">
+        <div class="rzp-header">
+          <button class="rzp-close" id="rzp-close">&times;</button>
+          <h3>Razorpay checkout</h3>
+          <div class="rzp-amount" id="rzp-modal-amt">₹0</div>
+        </div>
+        <div class="rzp-body" id="rzp-body">
+          <div class="rzp-method">
+            <div class="rzp-method-info">
+              <div class="rzp-method-title">UPI / QR</div>
+              <div class="rzp-method-desc">Google Pay, PhonePe, Paytm & more</div>
+            </div>
+          </div>
+          <div class="rzp-method">
+            <div class="rzp-method-info">
+              <div class="rzp-method-title">Cards</div>
+              <div class="rzp-method-desc">Visa, MasterCard, RuPay & more</div>
+            </div>
+          </div>
+          <div class="rzp-method">
+            <div class="rzp-method-info">
+              <div class="rzp-method-title">Netbanking</div>
+              <div class="rzp-method-desc">All Indian banks</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Processing State -->
+        <div class="rzp-spinner" id="rzp-spinner"></div>
+        <div class="rzp-success-msg" id="rzp-success">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <h3 style="color:#00c853; margin-bottom:0.5rem;">Payment Successful!</h3>
+          <p style="color:#666; font-size:0.9rem;">Thank you for your order.</p>
+        </div>
+
+        <div class="rzp-footer">Secured by Razorpay</div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+    <script>
+      // Page Specific Logic
+      document.addEventListener('DOMContentLoaded', () => {
+        let currentCart = JSON.parse(localStorage.getItem('hw_cart')) || [];
+        
+        // Render Checkout Items
+        const listEl = document.getElementById('co-items-list');
+        const subtotalEl = document.getElementById('co-subtotal');
+        const totalEl = document.getElementById('co-total');
+        const rzpModalAmt = document.getElementById('rzp-modal-amt');
+        
+        if(currentCart.length === 0) {
+          listEl.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+          let html = '';
+          let total = 0;
+          currentCart.forEach(item => {
+            total += item.price * item.quantity;
+            html += `
+              <div class="co-item">
+                <img src="${item.img}" alt="">
+                <div style="flex:1">
+                  <div style="font-weight:600; font-size:0.9rem;">${item.name}</div>
+                  <div style="color:var(--text-muted); font-size:0.8rem;">Qty: ${item.quantity}</div>
+                </div>
+                <div style="font-weight:bold">₹${(item.price * item.quantity).toLocaleString('en-IN')}</div>
+              </div>
+            `;
+          });
+          listEl.innerHTML = html;
+          subtotalEl.textContent = '₹' + total.toLocaleString('en-IN');
+          totalEl.textContent = '₹' + total.toLocaleString('en-IN');
+          rzpModalAmt.textContent = '₹' + total.toLocaleString('en-IN');
+        }
+
+        // The payment method is now strictly Razorpay mock, no toggle logic needed.
+
+        // Fake Payment Flow
+        const payBtn = document.getElementById('btn-pay-now');
+        const rzpOverlay = document.getElementById('rzp-overlay');
+        const rzpClose = document.getElementById('rzp-close');
+        const rzpBody = document.getElementById('rzp-body');
+        const rzpSpinner = document.getElementById('rzp-spinner');
+        const rzpSuccess = document.getElementById('rzp-success');
+
+        payBtn.addEventListener('click', () => {
+          if(currentCart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+          }
+          
+          // Show Razorpay Modal regardless of selection for the demo effect
+          rzpOverlay.classList.add('active');
+          rzpBody.style.display = 'block';
+          rzpSpinner.style.display = 'none';
+          rzpSuccess.style.display = 'none';
+        });
+
+        rzpClose.addEventListener('click', () => {
+          rzpOverlay.classList.remove('active');
+        });
+
+        // Simulate choosing a payment method inside Razorpay
+        document.querySelectorAll('.rzp-method').forEach(meth => {
+          meth.addEventListener('click', () => {
+            rzpBody.style.display = 'none';
+            rzpSpinner.style.display = 'block';
+            
+            setTimeout(() => {
+              rzpSpinner.style.display = 'none';
+              rzpSuccess.style.display = 'block';
+              
+              // Clear cart
+              localStorage.removeItem('hw_cart');
+              
+              // Redirect home after 2 seconds
+              setTimeout(() => {
+                window.location.href = '/index.html';
+              }, 2500);
+              
+            }, 2000);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Wheels | Next Drop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="navbar" class="scrolled">
+      <div class="nav-container">
+        <div class="logo">
+          <a href="/index.html" style="text-decoration:none; color:inherit;">
+            <span class="logo-text">HOT <span class="accent-red">WHEELS</span></span>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="/index.html">Intro</a>
+          <a href="/shop.html">Shop</a>
+          <a href="/drop.html" style="color:var(--accent-red)">Drops</a>
+        </div>
+        <div class="nav-actions">
+          <a href="/shop.html" class="icon-btn search-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </a>
+          <button class="icon-btn wishlist-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="icon-btn cart-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Limited Drop Section -->
+    <section id="drops" class="section drop-section" style="min-height: 100vh; display: flex; align-items: center; padding-top: 8rem;">
+      <div class="drop-bg"></div>
+      <div class="container drop-container">
+        <div class="drop-content reveal-left">
+          <div class="drop-badge">Next Drop</div>
+          <h2 class="drop-title">Surprise <br> <span class="gradient-text">Concept Edition</span></h2>
+          <p class="drop-desc">Only 500 units minted globally. Features ultra-detailed interior, diecast body, and real rubber tires. Do not miss this exclusive drop.</p>
+          
+          <div class="countdown" id="countdown">
+            <div class="time-box">
+              <span class="time-val" id="days">02</span>
+              <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+              <span class="time-val" id="hours">14</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+              <span class="time-val" id="mins">45</span>
+              <span class="time-label">Mins</span>
+            </div>
+            <div class="time-box">
+              <span class="time-val" id="secs">22</span>
+              <span class="time-label">Secs</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary drop-btn">Notify Me</button>
+        </div>
+        <div class="drop-image reveal-right">
+          <img src="/images/Hot-Wheels-Car-PNG-Picture.png" alt="Surprise Concept" class="drop-car-img float-anim">
+          <div class="drop-platform"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-text">HOT <span class="accent-red">WHEELS</span></span>
+          </div>
+          <p class="footer-desc">Premium diecast models and exclusive drops for the ultimate collector.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/shop.html">Supercars</a></li>
+            <li><a href="/shop.html">Classics</a></li>
+            <li><a href="/shop.html">Track Sets</a></li>
+            <li><a href="/shop.html">Exclusives</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay Updated</h4>
+          <p>Get notified about new drops and rare finds.</p>
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email">
+            <button class="btn btn-primary">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Hot Wheels Concept. For demo purposes only. No real transactions.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

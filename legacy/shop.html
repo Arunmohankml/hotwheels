@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Wheels | Shop Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="shop-page">
+    <!-- Navbar -->
+    <nav id="navbar" class="scrolled"> <!-- Always scrolled on subpages for solid bg -->
+      <div class="nav-container">
+        <div class="logo">
+          <a href="/index.html" style="text-decoration:none; color:inherit;">
+            <span class="logo-text">HOT <span class="accent-red">WHEELS</span></span>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="/index.html">Intro</a>
+          <a href="/shop.html" style="color:var(--accent-red)">Shop</a>
+          <a href="/drop.html">Drops</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn wishlist-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="icon-btn cart-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
+
+    <!-- Shop Header & Search -->
+    <section class="section shop-header" style="padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="section-header fade-up" style="margin-bottom: 1.5rem;">
+          <h1 class="section-title" style="font-size: 2.5rem; margin-bottom: 0.5rem;">The <span class="gradient-text">Vault</span></h1>
+          <p class="section-desc">Browse our complete collection of premium diecast models.</p>
+        </div>
+        
+        <div class="search-container fade-up" style="max-width: 600px; margin: 0 auto 1.5rem;">
+          <div class="input-group" style="box-shadow: 0 4px 20px rgba(255,42,42,0.1);">
+            <span style="background: var(--bg-card); border: 1px solid var(--border-light); border-right: none; padding: 0.8rem 1rem; border-radius: 4px 0 0 4px; color: var(--text-muted); display:flex; align-items:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <input type="text" placeholder="Search by model, series, or color..." style="border-radius: 0 4px 4px 0; border-left: none;">
+            <button class="btn btn-primary" style="margin-left: -5px; border-radius: 0 4px 4px 0;">Search</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section class="section bg-darker" style="padding-top: 1rem;">
+      <div class="container">
+        <div class="products-grid">
+          
+          <!-- Product 1 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-badge accent">Rare</div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-Photos.png" alt="Concept V8" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Concept V8 'Gold'</h4>
+              <p class="product-series">Signature Series</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Ultra-rare gold plated edition with custom aero kit.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹19,999</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-badge">New</div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-HD-Image (1).png" alt="Neon Speedster" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Neon Speedster X</h4>
+              <p class="product-series">Elite Series</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Cyberpunk inspired design with translucent wheels.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹2,499</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-Clipart.png" alt="Viper R/T" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Viper R/T Concept</h4>
+              <p class="product-series">Street Tuners</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Aggressive widebody kit and custom exhaust details.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹3,499</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-No-Background (1).png" alt="Drift King" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Drift King Z</h4>
+              <p class="product-series">Track Day</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Tuned for the track. Authentic racing decals.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹1,999</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car.png" alt="Classic Cruiser" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Classic Cruiser '69</h4>
+              <p class="product-series">Heritage Collection</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Vintage muscle car recreation with premium finish.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹2,999</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-No-Background.png" alt="Muscle Mod" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Muscle Mod GT</h4>
+              <p class="product-series">Classic Mod</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Restomod styling with modern interior detailing.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹2,299</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 7 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-HD-Image.png" alt="Exotic Tuner" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Exotic Tuner X</h4>
+              <p class="product-series">Exotics</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Low stance, aggressive styling, carbon fiber details.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹3,999</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-Image.png" alt="Rally Sport" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Rally Sport RS</h4>
+              <p class="product-series">Off-Road Series</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Lifted suspension and dirt-ready tires.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹2,799</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 9 -->
+          <div class="product-card tilt-card fade-up">
+            <div class="card-glow"></div>
+            <div class="product-img-wrap">
+              <img src="/images/Hot-Wheels-Car-PNG-Picture.png" alt="Phantom Concept" class="product-img">
+            </div>
+            <div class="product-details">
+              <h4 class="product-name">Phantom Concept</h4>
+              <p class="product-series">Future Concepts</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Sleek aerodynamic design of the next century.</p>
+              <div class="product-bottom">
+                <span class="product-price">₹4,599</span>
+                <button class="btn btn-primary add-cart-btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-text">HOT <span class="accent-red">WHEELS</span></span>
+          </div>
+          <p class="footer-desc">Premium diecast models and exclusive drops for the ultimate collector.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/shop.html">Supercars</a></li>
+            <li><a href="/shop.html">Classics</a></li>
+            <li><a href="/shop.html">Track Sets</a></li>
+            <li><a href="/shop.html">Exclusives</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay Updated</h4>
+          <p>Get notified about new drops and rare finds.</p>
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email">
+            <button class="btn btn-primary">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Hot Wheels Concept. For demo purposes only. No real transactions.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
