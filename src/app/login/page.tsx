@@ -113,14 +113,14 @@ const LoginPage = () => {
                   exit={{ opacity: 0, height: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="relative">
-                    <User className="absolute left-6 top-1/2 -translate-y-1/2 text-luxury-muted" size={16} />
+                  <div className="relative group">
+                    <User className="absolute left-7 top-1/2 -translate-y-1/2 text-luxury-muted group-focus-within:text-black transition-colors" size={18} />
                     <input 
                       type="text" 
                       required={!isLogin}
                       value={name} 
                       onChange={e => setName(e.target.value)} 
-                      className="luxury-input pl-14" 
+                      className="w-full bg-luxury-bg border border-luxury-border py-5 pl-16 pr-6 rounded-[24px] outline-none focus:border-black focus:bg-white transition-all font-medium text-sm" 
                       placeholder="Full Name" 
                     />
                   </div>
@@ -128,26 +128,26 @@ const LoginPage = () => {
               )}
             </AnimatePresence>
 
-            <div className="relative">
-              <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-luxury-muted" size={16} />
+            <div className="relative group">
+              <Mail className="absolute left-7 top-1/2 -translate-y-1/2 text-luxury-muted group-focus-within:text-black transition-colors" size={18} />
               <input 
                 type="email" 
                 required
                 value={email} 
                 onChange={e => setEmail(e.target.value)} 
-                className="luxury-input pl-14" 
+                className="w-full bg-luxury-bg border border-luxury-border py-5 pl-16 pr-6 rounded-[24px] outline-none focus:border-black focus:bg-white transition-all font-medium text-sm" 
                 placeholder="Email Address" 
               />
             </div>
 
-            <div className="relative">
-              <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-luxury-muted" size={16} />
+            <div className="relative group">
+              <Lock className="absolute left-7 top-1/2 -translate-y-1/2 text-luxury-muted group-focus-within:text-black transition-colors" size={18} />
               <input 
                 type="password" 
                 required
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
-                className="luxury-input pl-14" 
+                className="w-full bg-luxury-bg border border-luxury-border py-5 pl-16 pr-6 rounded-[24px] outline-none focus:border-black focus:bg-white transition-all font-medium text-sm" 
                 placeholder="Password" 
               />
             </div>

@@ -176,32 +176,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col gap-6"
-            >
-              <div className="h-[1px] w-full bg-luxury-border" />
-              <div className="flex justify-between items-center">
-                <Link 
-                  href={currentUser ? "/account" : "/login"}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-luxury-muted"
-                >
-                  <User size={16} /> {currentUser ? 'Account' : 'Sign In'}
-                </Link>
-                <div className="flex gap-8">
-                  <button onClick={() => { setIsWishlistOpen(true); setMobileMenuOpen(false); }} className="p-3 bg-luxury-card rounded-full border border-luxury-border">
-                    <Heart size={16} />
-                  </button>
-                  <button onClick={() => { setIsCartOpen(true); setMobileMenuOpen(false); }} className="p-3 bg-black text-white rounded-full flex items-center gap-2">
-                    <ShoppingBag size={16} />
-                    <span className="text-[10px] font-bold">{itemCount}</span>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

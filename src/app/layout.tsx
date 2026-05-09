@@ -5,6 +5,7 @@ import { WishlistProvider } from "@/context/WishlistContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ClientDrawers from "@/components/ClientDrawers";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Hot Wheels Premium Store",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen flex flex-col bg-luxury-bg text-luxury-text selection:bg-black selection:text-white">
+        <Script src="https://checkout.razorpay.com/v1/checkout.js" />
         <CartProvider>
           <WishlistProvider>
             <Navbar />

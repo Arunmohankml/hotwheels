@@ -22,44 +22,68 @@ const CheckoutPage = () => {
     setLoading(true);
 
     try {
-      const user = auth.currentUser;
-      
-      const orderPayload: any = {
-        user_id: user?.uid || null,
-        total_amount: cartTotal,
-        status: 'processing',
-        shipping_address: formData,
-        payment_id: 'TEST_PAYMENT_' + Date.now()
+      // 1. Create Razorpay Order
+      const response = await fetch('/api/razorpay/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: cartTotal }),
+      });
+
+      const orderData = await response.json();
+      if (orderData.error) throw new Error(orderData.error);
+
+      // 2. Initialize Razorpay Checkout
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_SnHp6xjK9pOb5M',
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "Hot Wheels Store",
+        description: "Collector Series Acquisition",
+        order_id: orderData.id,
+        handler: async (response: any) => {
+          // 3. Payment Success - Record Order
+          const user = auth.currentUser;
+          const orderPayload: any = {
+            user_id: user?.uid || null,
+            total_amount: cartTotal,
+            status: 'processing',
+            shipping_address: formData,
+            payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+            items: cart
+          };
+
+          const { error } = await supabase.from('orders').insert([orderPayload]);
+          if (error) throw error;
+
+          // 4. Update Stock
+          for (const item of cart) {
+            const { data: currentProd } = await supabase
+              .from('products')
+              .select('stock')
+              .eq('id', item.id)
+              .single();
+            
+            if (currentProd) {
+              const newStock = Math.max(0, currentProd.stock - item.quantity);
+              await supabase.from('products').update({ stock: newStock }).eq('id', item.id);
+            }
+          }
+
+          clearCart();
+          router.push('/order-success');
+        },
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+        },
+        theme: { color: "#000000" },
       };
 
-      let { data, error } = await supabase.from('orders').insert([{ ...orderPayload, items: cart }]).select();
+      const rzp = new (window as any).Razorpay(options);
+      rzp.open();
 
-      if (error && error.message?.includes('items')) {
-        const retry = await supabase.from('orders').insert([orderPayload]).select();
-        data = retry.data;
-        error = retry.error;
-      }
-
-      if (error) throw error;
-
-      for (const item of cart) {
-        const { data: currentProd } = await supabase
-          .from('products')
-          .select('stock')
-          .eq('id', item.id)
-          .single();
-        
-        if (currentProd) {
-          const newStock = Math.max(0, currentProd.stock - item.quantity);
-          await supabase
-            .from('products')
-            .update({ stock: newStock })
-            .eq('id', item.id);
-        }
-      }
-
-      clearCart();
-      router.push('/order-success');
     } catch (err: any) {
       alert("Transaction failed: " + err.message);
     } finally {

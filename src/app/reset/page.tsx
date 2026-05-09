@@ -21,9 +21,15 @@ const ResetPage = () => {
 
     try {
       await sendPasswordResetEmail(auth, email);
-      setMessage('Recovery instructions deployed to your digital contact.');
+      setMessage('Recovery instructions deployed! Please check your inbox and spam folder.');
     } catch (err: any) {
-      setError(err.message.replace('Firebase: ', ''));
+      if (err.code === 'auth/user-not-found') {
+        setError('Registry identifier not found. Please verify your email.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid digital signature. Please provide a valid email.');
+      } else {
+        setError('Recovery transmission failed. Please try again later.');
+      }
     } finally {
       setLoading(false);
     }
@@ -69,14 +75,14 @@ const ResetPage = () => {
           )}
 
           <form onSubmit={handleReset} className="space-y-6">
-            <div className="relative">
-              <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-luxury-muted" size={16} />
+            <div className="relative group">
+              <Mail className="absolute left-7 top-1/2 -translate-y-1/2 text-luxury-muted group-focus-within:text-black transition-colors" size={18} />
               <input 
                 type="email" 
                 required
                 value={email} 
                 onChange={e => setEmail(e.target.value)} 
-                className="luxury-input pl-14" 
+                className="w-full bg-luxury-bg border border-luxury-border py-5 pl-16 pr-6 rounded-[24px] outline-none focus:border-black focus:bg-white transition-all font-medium text-sm" 
                 placeholder="collector@example.com" 
               />
             </div>

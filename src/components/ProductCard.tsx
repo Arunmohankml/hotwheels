@@ -31,12 +31,12 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
 
         {/* Image Container */}
-        <div className="relative h-28 md:h-48 w-full flex items-center justify-center mb-2 md:mb-6 pt-2 md:pt-4">
+        <div className="relative h-32 md:h-52 w-full flex items-center justify-center mb-2 md:mb-6 pt-2 md:pt-4 overflow-hidden rounded-2xl">
           <Image 
             src={product.image_url} 
             alt={product.name} 
             fill 
-            className={`object-contain p-4 drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-2xl ${!isOutOfStock ? 'group-hover:scale-105' : ''}`} 
+            className={`object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${!isOutOfStock ? 'group-hover:scale-110' : ''}`} 
           />
         </div>
 
