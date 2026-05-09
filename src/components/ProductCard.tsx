@@ -2,63 +2,80 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ShoppingCart, Plus } from 'lucide-react';
+import Link from 'next/link';
+import { ShoppingBag, X } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
-interface Product {
-  id: string;
-  name: string;
-  series: string;
-  price: number;
-  image_url: string;
-  is_limited?: boolean;
-}
+const ProductCard = ({ product }: { product: any }) => {
+  const { addToCart, setIsCartOpen } = useCart();
 
-const ProductCard = ({ product }: { product: Product }) => {
+  const isOutOfStock = product.stock <= 0;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); 
+    e.stopPropagation(); 
+    if (isOutOfStock) return;
+    addToCart(product);
+    setIsCartOpen(true);
+  };
+
   return (
-    <motion.div 
-      whileHover={{ y: -10 }}
-      className="product-card group relative bg-hw-card border border-white/10 rounded-xl p-6 transition-all hover:border-hw-red/30"
-    >
-      {/* 3D Glow Effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
-      
-      {/* Badges */}
-      {product.is_limited && (
-        <span className="absolute top-4 left-4 z-10 bg-hw-red text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">
-          Rare
-        </span>
-      )}
+    <Link href={`/shop/${product.id}`} className={`group block h-full ${isOutOfStock ? 'cursor-not-allowed pointer-events-none' : ''}`}>
+      <div className={`bg-white rounded-[24px] md:rounded-[32px] p-3 md:p-6 border border-luxury-border shadow-soft hover:shadow-premium hover:border-black transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative flex flex-col h-full ${isOutOfStock ? 'grayscale opacity-80' : ''}`}>
+        
+        {/* Category Badge */}
+        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10 flex flex-col gap-2">
+          <span className="px-2 md:px-3 py-1 bg-luxury-bg/80 backdrop-blur-md border border-luxury-border rounded-full text-[7px] md:text-[8px] font-bold uppercase tracking-widest text-luxury-muted">
+            {product.category || 'Standard'}
+          </span>
+        </div>
 
-      {/* Image Wrap */}
-      <div className="relative h-48 w-full flex items-center justify-center mb-6 overflow-visible">
-        <motion.div
-          whileHover={{ rotate: -5, scale: 1.1 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="relative w-full h-full"
-        >
+        {/* Image Container */}
+        <div className="relative h-28 md:h-48 w-full flex items-center justify-center mb-2 md:mb-6 pt-2 md:pt-4">
           <Image 
             src={product.image_url} 
             alt={product.name} 
-            fill
-            className="object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]"
+            fill 
+            className={`object-contain p-4 drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-2xl ${!isOutOfStock ? 'group-hover:scale-105' : ''}`} 
           />
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Details */}
-      <div className="relative z-10">
-        <h4 className="font-display font-bold text-xl mb-1 group-hover:text-hw-red transition-colors">{product.name}</h4>
-        <p className="text-white/40 text-xs uppercase tracking-widest mb-4">{product.series}</p>
-        
-        <div className="flex justify-between items-center mt-auto">
-          <span className="font-display font-black text-2xl tracking-tight">₹{product.price.toLocaleString('en-IN')}</span>
-          <button className="w-10 h-10 bg-white text-black rounded-lg flex items-center justify-center hover:bg-hw-red hover:text-white transition-all shadow-lg">
-            <Plus size={20} />
+        {/* Product Info */}
+        <div className="text-center mb-4 md:mb-6 flex-grow">
+          <h3 className="font-medium text-[11px] md:text-sm uppercase tracking-tight text-black mb-1 truncate px-1">{product.name}</h3>
+          <p className="text-[9px] md:text-[10px] font-bold text-luxury-muted uppercase tracking-widest">
+            {isOutOfStock ? 'Inventory Depleted' : `₹${product.price.toLocaleString('en-IN')}`}
+          </p>
+        </div>
+
+        {/* Action Button - Always Visible */}
+        <div className="mt-auto">
+          <button 
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+            className={`w-full py-2.5 md:py-4 rounded-[14px] md:rounded-[20px] text-[8px] md:text-[9px] font-bold uppercase tracking-[0.1em] md:tracking-[0.2em] flex items-center justify-center gap-2 transition-colors shadow-sm ${
+              isOutOfStock 
+                ? 'bg-zinc-200 text-zinc-500 cursor-not-allowed' 
+                : 'bg-black text-white hover:bg-hw-red'
+            }`}
+          >
+            {isOutOfStock ? (
+              <>
+                <X size={12} className="md:w-3.5 md:h-3.5" />
+                <span>Out of Stock</span>
+              </>
+            ) : (
+              <>
+                <ShoppingBag size={12} className="md:w-3.5 md:h-3.5" /> 
+                <span className="hidden xs:inline">Add to Cart</span>
+                <span className="xs:hidden">Add</span>
+              </>
+            )}
           </button>
         </div>
+
       </div>
-    </motion.div>
+    </Link>
   );
 };
 

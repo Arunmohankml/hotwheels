@@ -1,109 +1,107 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ArrowRight, Sparkles, Shield, Trophy } from 'lucide-react';
 import Link from 'next/link';
-import FeaturedProducts from '@/components/FeaturedProducts';
+import ProductCard from '@/components/ProductCard';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
   
-  // Parallax effects for the car and rings
-  const carX = useTransform(scrollY, [0, 800], [0, 500]);
-  const carRotate = useTransform(scrollY, [0, 800], [0, 15]);
-  const carOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  // High-End Motion System
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const carRotate = useTransform(scrollYProgress, [0, 1], [0, 5]);
+  const carScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   
-  const ringScale = useTransform(scrollY, [0, 800], [1, 1.5]);
-  const ringOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const smoothCarScale = useSpring(carScale, springConfig);
+
+  // Mock featured products for the showcase
+  const featuredProducts = [
+    { id: '1', name: 'Porsche 911 GT3 RS', price: 12500, image_url: '/images/car1.png', category: 'Elite' },
+    { id: '2', name: 'Ferrari LaFerrari', price: 15000, image_url: '/images/car2.png', category: 'Signature' },
+    { id: '3', name: 'Lamborghini Aventador SVJ', price: 13000, image_url: '/images/car3.png', category: 'Elite' },
+    { id: '4', name: 'McLaren P1', price: 14500, image_url: '/images/car4.png', category: 'Signature' },
+  ];
 
   return (
-    <div className="relative overflow-hidden bg-hw-dark" ref={containerRef}>
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_right_center,#1a0505_0%,#050505_70%)]" />
-          <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:50px_50px] [transform:perspective(500px)_rotateX(60deg)_translateY(-100px)_translateZ(-200px)] animate-[gridMove_20s_linear_infinite]" />
+    <div className="relative font-sans overflow-hidden" ref={containerRef}>
+      
+      {/* Cinematic Hero Section */}
+      <section className="relative min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-12 md:pb-16 px-6 md:px-12">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] rounded-full bg-black/[0.01] blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] rounded-full bg-black/[0.015] blur-[120px]" />
         </div>
 
-        {/* Glow Rings */}
-        <motion.div 
-          style={{ scale: ringScale, opacity: ringOpacity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border-2 border-hw-red/30 shadow-[0_0_40px_rgba(255,42,42,0.2),inset_0_0_40px_rgba(255,42,42,0.2)] [transform:translate(-50%,-50%)_rotateX(70deg)] animate-[pulseRing_4s_infinite_alternate]" 
-        />
-        <motion.div 
-          style={{ scale: ringScale, opacity: ringOpacity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border-2 border-hw-blue/20 shadow-[0_0_40px_rgba(0,229,255,0.1),inset_0_0_40px_rgba(0,229,255,0.1)] [transform:translate(-50%,-50%)_rotateX(70deg)] animate-[pulseRing_5s_infinite_alternate-reverse]" 
-        />
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto flex flex-col items-center">
+          
+          <motion.div style={{ y: textY, opacity }} className="text-center z-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-luxury-border bg-white/50 backdrop-blur-md mb-8"
+            >
+              <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-black">Featured Collection</span>
+            </motion.div>
 
-        <div className="max-w-[1400px] mx-auto px-8 w-full flex flex-col md:flex-row items-center justify-between relative z-10">
-          {/* Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 text-left"
-          >
-            <h1 className="font-display font-black text-6xl md:text-8xl leading-[0.9] tracking-tighter uppercase italic mb-6">
-              IGNITE YOUR <br />
-              <span className="gradient-text">PASSION</span>
-            </h1>
-            <p className="text-lg text-white/60 mb-10 max-w-lg">
-              Experience the ultimate collection of premium diecast models. 
-              Precision engineered, cinematic design, and exclusive drops 
-              for the modern collector.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/shop" className="px-8 py-4 bg-hw-gradient text-white font-display font-bold uppercase tracking-widest rounded-sm shadow-[0_4px_15px_rgba(255,42,42,0.3)] hover:scale-105 hover:shadow-[0_6px_20px_rgba(255,42,42,0.5)] transition-all flex items-center gap-2">
-                Explore Vault <ArrowRight size={20} />
-              </Link>
-              <Link href="/drops" className="px-8 py-4 bg-white/5 border border-white/10 text-white font-display font-bold uppercase tracking-widest rounded-sm backdrop-blur-sm hover:bg-white/10 transition-all flex items-center gap-2">
-                Next Drop <ChevronRight size={20} />
-              </Link>
+            <div className="overflow-hidden mb-10 px-4">
+              <motion.h1 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl md:text-[9vw] font-light leading-[0.85] tracking-tighter uppercase"
+              >
+                Engineering <br className="hidden md:block" />
+                <span className="font-medium">Perfected.</span>
+              </motion.h1>
             </div>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              transition={{ delay: 0.8, duration: 1.5 }}
+              className="max-w-md mx-auto text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] leading-[2] text-black"
+            >
+              Discover the absolute pinnacle of scale automotive design. 
+              <br className="hidden md:block" /> Curated for the modern elite collector.
+            </motion.p>
           </motion.div>
 
-          {/* Hero Car */}
+          {/* Floating Transparent Car */}
           <motion.div 
-            style={{ x: carX, rotate: carRotate, opacity: carOpacity }}
-            className="flex-1 relative h-[400px] md:h-[600px] w-full flex items-center justify-center"
+            style={{ scale: smoothCarScale, rotate: carRotate }}
+            initial={{ opacity: 0, y: 150 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="relative w-full max-w-[1200px] mt-16 md:mt-0 lg:-mt-12 pointer-events-none z-10"
           >
             <Image 
-              src="/images/Hot-Wheels-Car-PNG-Photos.png" 
-              alt="Elite Concept Mustang" 
-              width={1000} 
-              height={600} 
-              className="w-[140%] max-w-[1000px] drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)] object-contain"
+              src="/images/car13.png" 
+              alt="Hero Vehicle" 
+              width={1600} 
+              height={900} 
+              className="w-full h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)]"
               priority
             />
           </motion.div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 text-[10px] tracking-[4px] uppercase">
-          <span>Scroll</span>
-          <div className="w-[24px] h-[36px] border-2 border-white/20 rounded-xl relative">
-            <div className="w-[4px] h-[6px] bg-hw-red rounded-full absolute top-2 left-1/2 -translate-x-1/2 animate-[scrollWheel_1.5s_infinite]" />
-          </div>
+
         </div>
       </section>
 
-      {/* Marquee */}
-      <div className="bg-hw-red py-4 overflow-hidden relative flex">
-        <div className="flex whitespace-nowrap animate-[marqueeScroll_30s_linear_infinite] font-display font-black text-xl tracking-widest text-black uppercase">
-          {[...Array(10)].map((_, i) => (
-            <span key={i} className="mx-8">
-              Limited Edition Drops &bull; Elite Series &bull; Custom Tuners &bull; Racing Heritage &bull;
-            </span>
-          ))}
-        </div>
-      </div>
 
-      {/* Featured Products */}
-      <FeaturedProducts />
+
     </div>
   );
 }
