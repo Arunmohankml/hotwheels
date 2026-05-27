@@ -32,22 +32,14 @@ const AboutPage = () => {
             <span className="font-medium">Masterpieces.</span>
           </motion.h1>
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="relative w-full h-[400px] md:h-[600px] rounded-[48px] overflow-hidden shadow-2xl"
+            className="max-w-4xl border-l-2 border-black pl-8 py-4 my-16"
           >
-            <Image 
-              src="https://images.unsplash.com/photo-1594731826583-f80742639df9?q=80&w=2070&auto=format&fit=crop" 
-              alt="Premium Car Collection" 
-              fill 
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-12">
-               <p className="text-white/80 max-w-xl text-lg font-light leading-relaxed">
-                  Founded on a passion for precision and speed, our store is the ultimate destination for serious collectors of high-end die-cast models.
-               </p>
-            </div>
+             <p className="text-black/60 text-lg md:text-2xl font-light leading-relaxed">
+                Founded on a passion for precision and speed, our store is the ultimate destination for serious collectors of high-end die-cast models.
+             </p>
           </motion.div>
         </div>
 

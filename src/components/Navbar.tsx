@@ -94,6 +94,16 @@ const Navbar = () => {
                 )}
               </button>
               
+              {currentUser && (
+                <Link 
+                  href="/admin"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-black text-white rounded-full text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-hw-red shadow-sm transition-all"
+                >
+                  <Shield size={12} />
+                  <span>Admin</span>
+                </Link>
+              )}
+
               <Link 
                 href={currentUser ? "/account" : "/login"}
                 className="p-2 text-luxury-muted hover:text-black transition-colors"
@@ -120,6 +130,15 @@ const Navbar = () => {
               <Heart size={16} strokeWidth={1.5} />
             </button>
             
+            {currentUser && (
+              <Link 
+                href="/admin"
+                className="p-2 text-black/40 hover:text-black transition-colors"
+              >
+                <Shield size={16} strokeWidth={1.5} />
+              </Link>
+            )}
+
             <Link 
               href={currentUser ? "/account" : "/login"}
               className="p-2 text-black/40"
