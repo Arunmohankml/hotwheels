@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
 import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { CreditCard, Truck, ShieldCheck, MapPin, ChevronLeft, Package, Info } from 'lucide-react';
@@ -16,6 +17,15 @@ const CheckoutPage = () => {
     fullName: '', email: '', address: '', city: '', zip: ''
   });
   const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/login');
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,11 +1,13 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Shield, AlertCircle } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -15,6 +17,14 @@ interface CartDrawerProps {
 const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
   const { cart, removeFromCart, updateQuantity, cartTotal, itemCount } = useCart();
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const hasOutOfStockItems = cart.some(item => item.quantity > item.stock || item.stock <= 0);
 
@@ -153,18 +163,35 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                   </div>
                 )}
 
+                {!hasOutOfStockItems && !currentUser && (
+                  <div className="mb-6 p-4 bg-zinc-50 border border-luxury-border rounded-2xl flex items-start gap-3">
+                    <AlertCircle className="text-black/60 shrink-0" size={16} />
+                    <p className="text-[10px] font-bold text-black/60 leading-relaxed uppercase tracking-tight">
+                      Authentication required. Please sign in or register to complete your acquisition.
+                    </p>
+                  </div>
+                )}
+
                 <button
                   onClick={() => {
                     if (hasOutOfStockItems) return;
                     onClose();
-                    router.push('/checkout');
+                    if (!currentUser) {
+                      router.push('/login');
+                    } else {
+                      router.push('/checkout');
+                    }
                   }}
                   disabled={hasOutOfStockItems}
                   className={`w-full py-6 text-white text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-4 transition-all group rounded-2xl ${
                     hasOutOfStockItems ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed' : 'bg-black hover:opacity-90 shadow-xl'
                   }`}
                 >
-                  {hasOutOfStockItems ? 'Checkout Locked' : 'Proceed to Checkout'}
+                  {hasOutOfStockItems 
+                    ? 'Checkout Locked' 
+                    : !currentUser 
+                      ? 'Sign In to Checkout' 
+                      : 'Proceed to Checkout'}
                   {!hasOutOfStockItems && <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />}
                 </button>
               </div>

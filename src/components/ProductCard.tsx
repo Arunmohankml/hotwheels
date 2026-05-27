@@ -36,7 +36,7 @@ const ProductCard = ({ product }: { product: any }) => {
             src={product.image_url} 
             alt={product.name} 
             fill 
-            className={`object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${!isOutOfStock ? 'group-hover:scale-110' : ''}`} 
+            className={`object-contain p-3 md:p-6 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${!isOutOfStock ? 'group-hover:scale-105' : ''}`} 
           />
         </div>
 
