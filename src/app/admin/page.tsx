@@ -25,7 +25,7 @@ const AdminDashboard = () => {
         // Fetch All Users who are not the admin
         const { data: allUsers, error: usersError } = await supabase.from('profiles').select('*').neq('email', 'arunmohankml@gmail.com');
 
-        const revenue = orders?.reduce((sum, order) => sum + (order.total_amount || 0), 0) || 0;
+        const revenue = orders?.reduce((sum: number, order: any) => sum + (order.total_amount || 0), 0) || 0;
         
         setStats({
           totalRevenue: revenue,

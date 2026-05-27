@@ -66,7 +66,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (data) {
         setCart(prev => prev.map(item => {
-          const fresh = data.find(d => d.id === item.id);
+          const fresh = data.find((d: any) => d.id === item.id);
           return fresh ? { ...item, stock: fresh.stock } : item;
         }));
       }

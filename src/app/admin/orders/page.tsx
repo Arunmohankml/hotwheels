@@ -27,7 +27,7 @@ const OrderSheet = ({ order, isOpen, onClose, onStatusChange }: any) => {
         .in('id', productIds);
       
       const stockMap: Record<string, number> = {};
-      data?.forEach(p => {
+      data?.forEach((p: any) => {
         stockMap[p.id] = p.stock;
       });
       setStocks(stockMap);
