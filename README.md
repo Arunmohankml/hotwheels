@@ -1,3 +1,24 @@
+
+```md
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Razorpay-0C2451?style=for-the-badge&logo=razorpay&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Arunmohankml/hotwheels?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/Arunmohankml/hotwheels?style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/Arunmohankml/hotwheels?style=for-the-badge" />
+  <img src="https://img.shields.io/github/repo-size/Arunmohankml/hotwheels?style=for-the-badge" />
+</p>
+```
+
 ````md
 # HotWheels Store
 
