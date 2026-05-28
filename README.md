@@ -1,36 +1,239 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+````md
+# HotWheels Store
 
-## Getting Started
+Premium full-stack ecommerce platform for Hot Wheels and die-cast collectibles.
 
-First, run the development server:
+Built with a modern production-ready stack focused on speed, scalability, clean UI, secure authentication, and smooth shopping experience.
+
+---
+
+## Preview
+
+Live modern ecommerce experience with:
+
+- Premium monochrome UI
+- Smooth animations
+- Product catalog
+- Cart & checkout
+- Razorpay payment integration
+- Admin dashboard
+- Secure authentication
+- Mobile-first responsive design
+
+---
+
+## Tech Stack
+
+### Frontend
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+
+### Backend & Database
+- Supabase
+- PostgreSQL
+- Firebase Authentication
+
+### Payments
+- Razorpay Integration
+
+### Deployment
+- Vercel
+
+---
+
+## Features
+
+### Ecommerce
+- Product listing
+- Product details page
+- Add to cart
+- Checkout flow
+- Order handling
+- Payment integration
+- Responsive design
+
+### Admin Panel
+- Add products
+- Update stock
+- Delete products
+- Manage inventory
+- Manage orders
+
+### Authentication
+- Firebase Auth
+- Secure login system
+- Protected routes
+
+### UI/UX
+- Minimal luxury design
+- Glassmorphism effects
+- Smooth transitions
+- Optimized animations
+- Mobile-first experience
+
+---
+
+## Folder Structure
+
+```bash
+src/
+ ├── app/
+ ├── components/
+ ├── lib/
+ ├── styles/
+ ├── utils/
+ └── hooks/
+````
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Arunmohankml/hotwheels.git
+```
+
+Move into the project:
+
+```bash
+cd hotwheels
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Design Philosophy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project focuses on:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Clean premium ecommerce experience
+* Fast loading performance
+* Minimal modern UI
+* Smooth GPU-optimized animations
+* Mobile-first layouts
+* Production-ready architecture
 
-## Deploy on Vercel
+Inspired by modern luxury brands and clean interface systems.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security
+
+* Secure authentication using Firebase
+* Environment variable protection
+* Protected admin routes
+* Secure payment workflow
+
+---
+
+## Performance Optimizations
+
+* Optimized image loading
+* Lazy loading
+* GPU-friendly animations
+* Tailwind utility optimization
+* Responsive rendering
+
+---
+
+## Future Plans
+
+* Wishlist system
+* AI-powered recommendations
+* Order tracking
+* Reviews & ratings
+* Advanced analytics dashboard
+* Multi-vendor support
+
+---
+
+## Author
+
+### Arun Mohan
+
+Full Stack Developer
+B.Tech CSE Student
+SRM Institute of Science and Technology
+
+* GitHub: https://github.com/Arunmohankml
+* Portfolio: https://arunmohankml.github.io/portfolio/
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Tags
+
+`nextjs` `typescript` `tailwindcss` `firebase` `supabase` `postgresql` `razorpay`
+`ecommerce` `fullstack` `vercel` `hotwheels` `diecast`
+`modern-ui` `responsive-design` `web-development`
+
+---
+
+## Screenshots
+
+Add your website screenshots here.
+
+```md
+![Home Page](./public/screenshots/home.png)
+![Product Page](./public/screenshots/product.png)
+![Cart](./public/screenshots/cart.png)
+```
+
+---
+
+## Support
+
+If you like this project, consider giving it a star on GitHub.
+
+```
+```
