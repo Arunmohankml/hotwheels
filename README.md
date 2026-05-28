@@ -1,5 +1,5 @@
 
-```md
+
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
@@ -17,9 +17,8 @@
   <img src="https://img.shields.io/github/license/Arunmohankml/hotwheels?style=for-the-badge" />
   <img src="https://img.shields.io/github/repo-size/Arunmohankml/hotwheels?style=for-the-badge" />
 </p>
-```
 
-````md
+
 # HotWheels Store
 
 Premium full-stack ecommerce platform for Hot Wheels and die-cast collectibles.
